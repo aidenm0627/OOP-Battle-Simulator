@@ -1,34 +1,24 @@
 import random
 
-
 class Hero:
-    """
-    This is our hero blueprint.
-    
-    O=('-'Q)
-
-    Attributes:
-        name: The name of our adventurer.
-        hp: The current health value.
-        strength: The amount of damage the hero can deal.
-        (Bonus) defence: A hero's ability to reduce incoming damage.
-        (Bonus) special_ability: A unique ability the hero can use.
-    """
-    
     def __init__(self, name):
         self.name = name
-        self.health = 100
-        self.attack_power = random.randint(5, 15)
-    
+        self.health = 1000
+        self.attack_power = random.randint(5, 50)
+        self.frozen = 0  # counts rounds the hero is frozen
 
     def strike(self):
+        if self.frozen > 0:
+            print(f"{self.name} is frozen solid and cannot attack this round! ❄️")
+            self.frozen -= 1
+            return 0
         return random.randint(1, self.attack_power)
-    
+
     def receive_damage(self, damage):
-         self.health -= damage
-        # TODO We should prevent the goblins health from going into the NEGATIVE
-         print(f"{self.name} takes {damage} damage. Health is now {self.health}.")
+        self.health -= damage
+        if self.health < 0:
+            self.health = 0
+        print(f"{self.name} takes {damage} damage. Health is now {self.health}.")
 
     def is_alive(self):
         return self.health > 0
-

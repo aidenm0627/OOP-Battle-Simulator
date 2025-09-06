@@ -19,7 +19,7 @@ class Enemy:
 
     def take_damage(self, damage):
         self.health -= damage
-        # TODO We should prevent the goblins health from going into the NEGATIVE
+        # TODO We should prevent the enemies health from going into the NEGATIVE
         if self.health < 0:
             self.health = 0
         print(f"{self.name} takes {damage} damage. Health is now {self.health}.")
