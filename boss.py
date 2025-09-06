@@ -18,7 +18,7 @@ class IceDragon(Enemy):
 
     def attack(self):
         if self.health < 150:
-            self.attack_power = 40
+            self.attack_power = 50
         return self.attack_power
 
     def take_damage(self, damage):
